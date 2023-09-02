@@ -73,6 +73,7 @@ const Gareth = () => {
   const [token, setToken] = useState("");
   const [searchKey, setSearchKey] = useState("");
   const [profile, setProfile] = useState();
+  const [currentlyPlaying, setCurrentlyPlaying] = useState();
   const [artists, setArtists] = useState([]);
 
   // const getToken = () => {
@@ -108,8 +109,6 @@ const Gareth = () => {
   const searchArtists = async (e) => {
     e.preventDefault();
 
-    getProfile()
-
     const { data } = await axios.get("https://api.spotify.com/v1/search", {
       headers: {
         Authorization: `Bearer ${token}`,
@@ -139,7 +138,9 @@ const Gareth = () => {
     }
   }
 
-  const Profile = (props) => {
+
+
+  const Profile = ({ profile }) => {
     return (
       <>
         <h1>Display your Spotify profile data</h1>
@@ -150,25 +151,59 @@ const Gareth = () => {
           <span id="avatar"></span>
           <ul>
             <li>
-              User ID: <span id="id"></span>
+              User ID: <span id="id">{profile.display_name}</span>
             </li>
             <li>
               Email: <span id="email"></span>
             </li>
             <li>
-              Spotify URI: <a id="uri" href="#"></a>
+              Spotify URI: <a id="uri" href="#">{profile.uri}</a>
             </li>
             <li>
               Link: <a id="url" href="#"></a>
             </li>
             <li>
-              Profile Image: <span id="imgUrl"></span>
+              Profile Image: <span id="imgUrl">
+                {
+                  profile.images.length === 0
+                  ?
+                  "No profile image" 
+                  :
+                  profile.images.map((image) => {
+                    <img src=""></img>
+                  })
+                }
+              </span>
             </li>
           </ul>
         </section>
       </>
     );
   };
+
+  const CurrentlyPlaying = () => {
+    return (
+      <h2>Currently Playing</h2>
+    )
+  }
+
+  const getCurrentlyPlaying = async () => {
+    const response = await fetch("https://api.spotify.com/v1/me/player/currently-playing", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log(response);
+
+    // if (response.ok) {
+    //   const data = await response.json();
+    //   console.log(data);
+    //   setCurrentlyPlaying(data)
+    // } else {
+    //   console.log("Error getting current song.");
+    // }
+  }
 
   const renderArtists = () => {
     return artists.map((artist) => (
@@ -182,6 +217,14 @@ const Gareth = () => {
       </div>
     ));
   };
+
+  useEffect(() => {
+    getProfile()
+  }, [])
+
+  useEffect(() => {
+    getCurrentlyPlaying()
+  }, [token])
 
   return (
     <div className="App">
@@ -206,7 +249,15 @@ const Gareth = () => {
               />
               <button type={"submit"}>Search</button>
             </form>
-            <Profile profile={profile} />
+
+            {
+              profile 
+              ? 
+              <Profile profile={profile} />
+              : 
+              <button onClick={getProfile}>Profile</button> 
+            }
+            
           </>
         ) : (
           <h2>Please login</h2>
