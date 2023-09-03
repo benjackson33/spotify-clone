@@ -7,7 +7,6 @@ import {
 } from "../utils/spotify-auth-code";
 
 const Login = () => {
-  const [code, setCode] = useState();
   const [token, setToken] = useState("");
   const [profile, setProfile] = useState();
 
@@ -46,8 +45,6 @@ const Login = () => {
   useEffect(() => {
     const hash = window.location.hash;
     let token = window.localStorage.getItem("token");
-
-    setToken(token);
 
     if (!token && hash) {
       token = hash
