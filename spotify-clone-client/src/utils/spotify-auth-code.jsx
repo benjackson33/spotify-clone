@@ -65,24 +65,26 @@ export async function requestAccessToken(clientId, redirectUri) {
     code_verifier: codeVerifier,
   });
 
-  const response = fetch("https://accounts.spotify.com/api/token", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: body,
-  })
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error("HTTP status " + response.status);
-      }
-      console.log(response.json());
-      return response.json();
-    })
-    .then((data) => {
-      localStorage.setItem("access_token", data.access_token);
-    })
-    .catch((error) => {
-      console.error("Error:", error);
-    });
+  console.log(body);
+
+  // const response = fetch("https://accounts.spotify.com/api/token", {
+  //   method: "POST",
+  //   headers: {
+  //     "Content-Type": "application/x-www-form-urlencoded",
+  //   },
+  //   body: body,
+  // })
+  //   .then((response) => {
+  //     if (!response.ok) {
+  //       throw new Error("HTTP status " + response.status);
+  //     }
+  //     console.log(response.json());
+  //     return response.json();
+  //   })
+  //   .then((data) => {
+  //     localStorage.setItem("access_token", data.access_token);
+  //   })
+  //   .catch((error) => {
+  //     console.error("Error:", error);
+  //   });
 }
