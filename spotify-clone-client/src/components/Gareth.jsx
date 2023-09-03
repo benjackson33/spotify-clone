@@ -1,68 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  redirectToAuthCodeFlow,
-  getAccessToken,
-} from "../utils/spotify-auth-code";
 import axios from "axios";
-
-// const Gareth = () => {
-//   const spotifyClientId = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
-//   const spotifyRedirectUri = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
-//   const spotifyAuthEndpoint = "https://accounts.spotify.com/authorise";
-
-//   const [profile, setProfile] = useState(null);
-
-//   const onLogin = () => {
-//     const params = new URLSearchParams(window.location.search);
-//     const code = params.get("code");
-
-//     const getProfile = async () => {
-//       const accessToken = await getAccessToken(spotifyClientId, code);
-//       const profile = await fetchProfile(accessToken);
-//       setProfile(profile);
-//     };
-
-//     if (!code) {
-//       redirectToAuthCodeFlow(
-//         spotifyClientId,
-//         spotifyAuthEndpoint,
-//         spotifyRedirectUri
-//       );
-//     } else {
-//       getProfile();
-//     }
-//   };
-
-//   return (
-//     <>
-//       <h1>Display your Spotify profile data</h1>
-
-//       <section id="profile">
-//         <h2>
-//           Logged in as <span id="displayName"></span>
-//         </h2>
-//         <span id="avatar"></span>
-//         <ul>
-//           <li>
-//             User ID: <span id="id"></span>
-//           </li>
-//           <li>
-//             Email: <span id="email"></span>
-//           </li>
-//           <li>
-//             Spotify URI: <a id="uri" href="#"></a>
-//           </li>
-//           <li>
-//             Link: <a id="url" href="#"></a>
-//           </li>
-//           <li>
-//             Profile Image: <span id="imgUrl"></span>
-//           </li>
-//         </ul>
-//       </section>
-//     </>
-//   );
-// };
 
 const Gareth = () => {
   const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
@@ -138,8 +75,6 @@ const Gareth = () => {
     }
   }
 
-
-
   const Profile = ({ profile }) => {
     return (
       <>
@@ -180,12 +115,6 @@ const Gareth = () => {
       </>
     );
   };
-
-  const CurrentlyPlaying = () => {
-    return (
-      <h2>Currently Playing</h2>
-    )
-  }
 
   const getCurrentlyPlaying = async () => {
     const response = await fetch("https://api.spotify.com/v1/me/player/currently-playing", {
