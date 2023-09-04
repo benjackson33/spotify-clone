@@ -46,22 +46,6 @@ const Gareth = () => {
         window.localStorage.removeItem("token");
     };
 
-    const searchArtists = async (e) => {
-        e.preventDefault();
-
-        const { data } = await axios.get("https://api.spotify.com/v1/search", {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-            params: {
-                q: searchKey,
-                type: "artist",
-            },
-        });
-
-        setArtists(data.artists.items);
-    };
-
     const getProfile = async () => {
         const response = await fetch("https://api.spotify.com/v1/me", {
             headers: {
@@ -138,6 +122,22 @@ const Gareth = () => {
         );
     };
 
+    const searchArtists = async (e) => {
+        e.preventDefault();
+
+        const { data } = await axios.get("https://api.spotify.com/v1/search", {
+            headers: {
+                Authorization: `Bearer ${token}`,
+            },
+            params: {
+                q: searchKey,
+                type: "artist",
+            },
+        });
+
+        setArtists(data.artists.items);
+    };
+
     const renderArtists = () => {
         return artists.map((artist) => (
             <div key={artist.id}>
@@ -152,8 +152,8 @@ const Gareth = () => {
     };
 
     useEffect(() => {
-      console.log(currentlyPlaying);
-    }, [currentlyPlaying])
+        console.log(currentlyPlaying);
+    }, [currentlyPlaying]);
 
     return (
         <div className="App">
@@ -184,9 +184,14 @@ const Gareth = () => {
                         ) : (
                             <button onClick={getProfile}>Profile</button>
                         )}
-
-                        <button onClick={getCurrentlyPlaying} >Currently Playing</button>
-                        <CurrentlyPlaying currentlyPlaying={currentlyPlaying} />
+                        <button onClick={getCurrentlyPlaying}>
+                            Currently Playing
+                        </button>
+                        {currentlyPlaying && (
+                            <CurrentlyPlaying
+                                currentlyPlaying={currentlyPlaying}
+                            />
+                        )}
                     </>
                 ) : (
                     <h2>Please login</h2>
