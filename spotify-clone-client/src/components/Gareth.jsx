@@ -24,6 +24,8 @@ const Gareth = () => {
     useEffect(() => {
         const hash = window.location.hash;
         let token = window.localStorage.getItem("token");
+        console.log(hash);
+        console.log(token);
 
         // getToken()
 
