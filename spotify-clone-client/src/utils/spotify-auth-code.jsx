@@ -66,8 +66,6 @@ export async function requestAccessToken(clientId, redirectUri) {
     code_verifier: codeVerifier,
   });
 
-  console.log(body);
-
   const response = await fetch("https://accounts.spotify.com/api/token", {
     method: "POST",
     headers: {
