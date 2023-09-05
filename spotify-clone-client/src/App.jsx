@@ -15,9 +15,9 @@ function App() {
       <div>
         <h1>Hello</h1>
         <BenProfile />
-        <button onClick={toggleGareth}>Gareth</button>
-        {showGareth && <Gareth />}
-        {/* <Login /> */}
+        {/* <button onClick={toggleGareth}>Gareth</button>
+        {showGareth && <Gareth />} */}
+        <Login />
       </div>
     </>
   );

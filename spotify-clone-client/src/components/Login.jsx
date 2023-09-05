@@ -14,12 +14,14 @@ const Login = () => {
     const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
     const REDIRECT_URI = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
 
-    const handleLogin = async () => {
-        generateURL(CLIENT_ID, REDIRECT_URI);
+    const handleLogin = () => {
+        generateURL(CLIENT_ID, REDIRECT_URI)
+            .then(() => {
+                requestAccessToken(CLIENT_ID, REDIRECT_URI)
+            })
     };
 
     const getProfile = async () => {
-        await requestAccessToken(CLIENT_ID, REDIRECT_URI);
         let accessToken = localStorage.getItem("access_token");
         console.log(accessToken);
         setToken(accessToken);
@@ -36,12 +38,33 @@ const Login = () => {
 
     const handleLogout = () => {
         setToken("");
-        window.localStorage.removeItem("token");
+        window.localStorage.removeItem("access_token");
     };
 
     useEffect(() => {
         console.log(window.localStorage);
+        
     });
+
+    useEffect(() => {
+        const hash = window.location.hash;
+        let token = window.localStorage.getItem("access_token");
+
+        // getToken()
+
+        if (!token && hash) {
+            token = hash
+                .substring(1)
+                .split("&")
+                .find((elem) => elem.startsWith("access_token"))
+                .split("=")[1];
+
+            window.location.hash = "";
+            window.localStorage.setItem("access_token", token);
+        }
+
+        setToken(token);
+    }, []);
 
     return (
         <>
