@@ -14,21 +14,19 @@ const Login = () => {
     const CLIENT_ID = import.meta.env.VITE_SPOTIFY_CLIENT_ID;
     const REDIRECT_URI = import.meta.env.VITE_SPOTIFY_REDIRECT_URI;
 
-    const handleLogin = () => {
-        generateURL(CLIENT_ID, REDIRECT_URI)
-            .then(() => {
-                requestAccessToken(CLIENT_ID, REDIRECT_URI)
-            })
+    const handleLogin = async () => {
+        await generateURL(CLIENT_ID, REDIRECT_URI)
+        await requestAccessToken(CLIENT_ID, REDIRECT_URI)
     };
 
     const getProfile = async () => {
-        let accessToken = localStorage.getItem("access_token");
-        console.log(accessToken);
-        setToken(accessToken);
+        // let accessToken = localStorage.getItem("token");
+        // console.log(accessToken);
+        // setToken(accessToken);
 
         const response = await fetch("https://api.spotify.com/v1/me", {
             headers: {
-                Authorization: "Bearer " + accessToken,
+                Authorization: "Bearer " + token,
             },
         });
 
@@ -38,33 +36,34 @@ const Login = () => {
 
     const handleLogout = () => {
         setToken("");
-        window.localStorage.removeItem("access_token");
+        window.localStorage.removeItem("token");
     };
 
     useEffect(() => {
+        requestAccessToken(CLIENT_ID, REDIRECT_URI)
+        setToken(window.localStorage.access_token)
         console.log(window.localStorage);
-        
     });
 
-    useEffect(() => {
-        const hash = window.location.hash;
-        let token = window.localStorage.getItem("access_token");
+    // useEffect(() => {
+    //     const hash = window.location.hash;
+    //     let token = window.localStorage.getItem("token");
 
-        // getToken()
+    //     // getToken()
 
-        if (!token && hash) {
-            token = hash
-                .substring(1)
-                .split("&")
-                .find((elem) => elem.startsWith("access_token"))
-                .split("=")[1];
+    //     if (!token && hash) {
+    //         token = hash
+    //             .substring(1)
+    //             .split("&")
+    //             .find((elem) => elem.startsWith("access_token"))
+    //             .split("=")[1];
 
-            window.location.hash = "";
-            window.localStorage.setItem("access_token", token);
-        }
+    //         window.location.hash = "";
+    //         window.localStorage.setItem("token", token);
+    //     }
 
-        setToken(token);
-    }, []);
+    //     setToken(token);
+    // }, []);
 
     return (
         <>
