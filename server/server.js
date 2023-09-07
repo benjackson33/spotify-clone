@@ -7,9 +7,9 @@ const app = express();
 
 app.use(cors());
 
-var client_id = process.env.CLIENT_ID;
-var client_secret = process.env.CLIENT_SECRET;
-var redirect_uri = "http://localhost:3001/callback";
+const client_id = process.env.CLIENT_ID;
+const client_secret = process.env.CLIENT_SECRET;
+const redirect_uri = "http://localhost:3001/callback";
 
 const generateRandomString = (length) => {
   let text = "";
@@ -37,46 +37,46 @@ app.get("/login", (req, res) => {
     state: state,
   });
 
-  res.redirect(
-    "https://accounts.spotify.com/authorize?" + args
-  );
+  res.redirect("https://accounts.spotify.com/authorize?" + args);
 });
 
-app.get('/callback', (req, res) => {
-  const code = req.query.code || null
-  const state = req.query.state || null
-
-  let args = new URLSearchParams({
-    error: 'state_mismatch'
-  });
+app.get("/callback", async (req, res) => {
+  const code = req.query.code || null;
+  const state = req.query.state || null;
 
   if (state === null) {
-    res.redirect('/#' + args)
+    res.redirect("/#" + args);
   } else {
-    let authOptions = {
-      url: 'https://accounts.spotify.com/api/token',
-      form: {
-        code: code,
-        redirect_uri: redirect_uri,
-        grant_type: 'authorization_code'
-      }, 
-      headers: {
-        'Authorization': 'Basic ' + (new Buffer.from(client_id + ':' + client_secret).toString('base64'))
-      },
-      json:true
+    let args = new URLSearchParams({
+      code: code,
+      redirect_uri: redirect_uri,
+      grant_type: "authorization_code",
+    });
+
+    try {
+      const response = await axios({
+        method: "POST",
+        url: "https://accounts.spotify.com/api/token",
+        data: args,
+        headers: {
+          Authorization:
+            "Basic " +
+            new Buffer.from(client_id + ":" + client_secret).toString("base64"),
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      })
+
+      if (response.status === 200) {
+        const { data } = response
+        res.send(data);
+      } else {
+        res.send(response);
+      }
+
+    } catch (err) {
+      res.send(err)
     }
-
-    axios.post(authOptions.data)
-    .then(res => {
-      console.log(res);
-    })
   }
-
- 
-
-
-})
-
-
+});
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));
