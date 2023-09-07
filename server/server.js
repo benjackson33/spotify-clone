@@ -9,7 +9,7 @@ app.use(cors());
 
 var client_id = process.env.CLIENT_ID;
 var client_secret = process.env.CLIENT_SECRET;
-var redirect_uri = "http://localhost:3000/callback";
+var redirect_uri = "http://localhost:3001/callback";
 
 const generateRandomString = (length) => {
   let text = "";
@@ -41,5 +41,42 @@ app.get("/login", (req, res) => {
     "https://accounts.spotify.com/authorize?" + args
   );
 });
+
+app.get('/callback', (req, res) => {
+  const code = req.query.code || null
+  const state = req.query.state || null
+
+  let args = new URLSearchParams({
+    error: 'state_mismatch'
+  });
+
+  if (state === null) {
+    res.redirect('/#' + args)
+  } else {
+    let authOptions = {
+      url: 'https://accounts.spotify.com/api/token',
+      form: {
+        code: code,
+        redirect_uri: redirect_uri,
+        grant_type: 'authorization_code'
+      }, 
+      headers: {
+        'Authorization': 'Basic ' + (new Buffer.from(client_id + ':' + client_secret).toString('base64'))
+      },
+      json:true
+    }
+
+    axios.post(authOptions.data)
+    .then(res => {
+      console.log(res);
+    })
+  }
+
+ 
+
+
+})
+
+
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));
