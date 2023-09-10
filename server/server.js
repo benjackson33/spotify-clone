@@ -69,19 +69,17 @@ app.get("/callback", async (req, res) => {
       if (response.status === 200) {
         const { data } = response
 
-        axios.get('https://api.spotify.com/v1/me', {
-          headers: {
-            Authorization: `Bearer ${data.access_token}`
-          }   
-        })
-          .then(response => {
-            res.send(response.data)
+        try {
+          const profileResponse = await axios.get('https://api.spotify.com/v1/me', {
+            headers: {
+              Authorization: `Bearer ${data.access_token}`
+            }   
           })
-          .catch(err => {
-            res.send(err)
-          })
+          res.send(profileResponse.data)
+        } catch (err) {
+          res.send(err)
+        }
 
-        res.send(data);
       } else {
         res.send(response);
       }
