@@ -67,8 +67,14 @@ app.get("/callback", async (req, res) => {
       })
 
       if (response.status === 200) {
-        const { data } = response
-        res.send(data)
+        const { access_token, refresh_token } = response.data
+
+        let args = new URLSearchParams({
+          access_token: access_token,
+          refresh_token: refresh_token
+        })
+
+        res.redirect(`http://localhost:5173/?${args}`)
 
         // axios.get(`http://localhost:3001/refresh_token?refresh_token=${data.refresh_token}`)
         //   .then(refreshRes => {
@@ -78,16 +84,6 @@ app.get("/callback", async (req, res) => {
         //     res.send(err)
         //   })
 
-        // try {
-        //   const profileResponse = await axios.get('https://api.spotify.com/v1/me', {
-        //     headers: {
-        //       Authorization: `Bearer ${data.access_token}`
-        //     }   
-        //   })
-        //   res.send(profileResponse.data)
-        // } catch (err) {
-        //   res.send(err)
-        // }
       } else {
         res.send(response);
       }
@@ -121,30 +117,6 @@ app.get("/refresh_token", async (req, res) => {
     .catch(err => {
       res.send(err)
     })
-
-  // try {
-  //   const response = await axios({
-  //     method: "POST",
-  //     url: 'https://accounts.spotify.com/api/token',
-  //     data: args,
-  //     headers: {
-  //       'Authorization': `Basic ${new Buffer.from(`${client_id}:${client_secret}`).toString('base64')}`,
-  //       "Content-Type": "application/x-www-form-urlencoded"
-  //     }
-  //   })
-
-  //   if (response.status === 200) {
-  //     const access_token = response.access_token
-  // const refresh_response = await axios.get(`http://localhost:3001/refresh_token?refresh_token=${refresh_token}`)
-  //     res.send({
-  //       'access_token': access_token
-  //     })
-  //   } else {
-  //     res.send(response)
-  //   }
-  // } catch (err) {
-  //   res.send(err)
-  // }
 })
 
 app.listen(port, () => console.log(`Listening on port ${port}!`));
