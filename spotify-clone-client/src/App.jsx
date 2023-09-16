@@ -7,6 +7,7 @@ import Profile from "./components/Profile";
 
 import spotifySearchConfig from "./utils/spotifySearchConfig";
 import Category from "./components/Category";
+import Logout from "./components/Logout";
 
 function App() {
     const [token, setToken] = useState(null);
@@ -18,15 +19,6 @@ function App() {
                 Authorization: `Bearer ${token}`,
             },
         });
-    };
-    const getCategories = () => {
-        const res = axios.get(`https://api.spotify.com/v1/browse/categories`, {
-            header: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        console.log(res);
-        return res;
     };
 
     useEffect(() => {
@@ -53,18 +45,17 @@ function App() {
         // ! Comment setProfileData() > Save > Uncomment setProfileData() > Save
         setProfileData();
 
-        
     }, []);
 
     useEffect(() => {
-        console.log(profile);
-    }, [profile]);
+      console.log(token);
+    }, [token])
 
     return (
         <>
             <div>
                 <h1>Hello</h1>
-                <Login />
+                {token ? <Logout /> : <Login /> }
                 {profile && <Profile profile={profile} />}
                 <Category token={token} />
             </div>

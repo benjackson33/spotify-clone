@@ -28,8 +28,8 @@ const Category = ({ token }) => {
                     }
                 );
                 console.log(res);
-                // const { data } = await getCategories()
-                // setCategories(data)
+                const { data } = await getCategories()
+                setCategories(data)
             } catch (err) {
                 console.log(err);
             }
