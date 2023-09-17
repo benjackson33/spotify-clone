@@ -7,7 +7,8 @@ const Logout = () => {
                 window.localStorage.removeItem(item)
             }
         }
-        
+
+        window.location = window.location.origin;
     }
 
     return <button onClick={logout} >Logout</button>;
