@@ -29,12 +29,13 @@ function App() {
 
         localStorage.setItem("access_token", accessToken);
         localStorage.setItem("refresh_token", refreshToken);
-
+        console.log("1");
         setToken(accessToken);
 
         const setProfileData = async () => {
             try {
                 const { data } = await getProfile();
+                console.log("3");
                 setProfile(data);
             } catch (err) {
                 console.log(err);
@@ -42,20 +43,26 @@ function App() {
         };
 
         // ! If you have issues with the Axios calls, for now:
-        // ! Comment setProfileData() > Save > Uncomment setProfileData() > Save
+        // ! Save App.js after logging in.
+        console.log("2");
         setProfileData();
-
     }, []);
 
     useEffect(() => {
-      console.log(token);
-    }, [token])
+        console.log(token);
+    }, [token]);
 
     return (
         <>
             <div>
                 <h1>Hello</h1>
-                {token ? <Logout /> : <Login /> }
+                {token ? (
+                    <>
+                        <Logout />
+                    </>
+                ) : (
+                    <Login />
+                )}
                 {profile && <Profile profile={profile} />}
                 <Category token={token} />
             </div>
