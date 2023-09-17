@@ -27,7 +27,7 @@ const generateRandomString = (length) => {
 app.get("/login", (req, res) => {
   let state = generateRandomString(16);
   let scope =
-    "user-read-private user-read-email user-read-currently-playing user-read-recently-played";
+    "user-read-private user-read-email user-read-currently-playing user-read-recently-played user-top-read";
 
   let args = new URLSearchParams({
     response_type: "code",
@@ -67,22 +67,16 @@ app.get("/callback", async (req, res) => {
       })
 
       if (response.status === 200) {
-        const { access_token, refresh_token } = response.data
+        const { access_token, expires_in, refresh_token } = response.data
 
         let args = new URLSearchParams({
           access_token: access_token,
+          expires_in: expires_in,
           refresh_token: refresh_token
         })
 
+        // res.send(response.data)
         res.redirect(`http://localhost:5173/?${args}`)
-
-        // axios.get(`http://localhost:3001/refresh_token?refresh_token=${data.refresh_token}`)
-        //   .then(refreshRes => {
-        //     res.send(refreshRes.data)
-        //   })
-        //   .catch(err => {
-        //     res.send(err)
-        //   })
 
       } else {
         res.send(response);
