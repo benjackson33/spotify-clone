@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ArtistSearch from "./ArtistSearch";
 
 const Search = () => {
   const [searchInput, setSearchInput] = useState("");

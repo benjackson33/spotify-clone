@@ -25,7 +25,7 @@ const Profile = ({ token }) => {
 
     // ! If you have issues with the Axios calls, for now:
     // ! Save App.js after logging in.
-    fetchProfileData();
+    // fetchProfileData();
   }, [token]);
 
   return (
