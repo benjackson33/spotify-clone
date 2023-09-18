@@ -26,8 +26,15 @@ const generateRandomString = (length) => {
 
 app.get("/login", (req, res) => {
   let state = generateRandomString(16);
-  let scope =
-    "user-read-private user-read-email user-read-currently-playing user-read-recently-played user-top-read";
+  let scope = `
+      user-read-private 
+      user-read-email 
+      user-library-read
+      user-top-read 
+      user-read-currently-playing 
+      user-read-recently-played 
+      playlist-read-private 
+    `; 
 
   let args = new URLSearchParams({
     response_type: "code",

@@ -14,7 +14,7 @@ const Profile = ({ token }) => {
   };
 
   useEffect(() => {
-    const setProfileData = async () => {
+    const fetchProfileData = async () => {
       try {
         const { data } = await getProfile();
         setProfile(data);
@@ -25,7 +25,7 @@ const Profile = ({ token }) => {
 
     // ! If you have issues with the Axios calls, for now:
     // ! Save App.js after logging in.
-    setProfileData();
+    fetchProfileData();
   }, [token]);
 
   return (

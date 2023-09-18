@@ -14,7 +14,7 @@ const Category = ({ token }) => {
   };
 
   useEffect(() => {
-    const setCategoriesData = async () => {
+    const fetchCategoriesData = async () => {
       try {
         const { data } = await getCategories();
         setCategories(data);
@@ -23,7 +23,7 @@ const Category = ({ token }) => {
       }
     };
 
-    setCategoriesData();
+    fetchCategoriesData();
   }, [token]);
 
   return (

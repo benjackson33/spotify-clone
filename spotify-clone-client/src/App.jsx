@@ -13,7 +13,7 @@ function App() {
   const [token, setToken] = useState(null);
 
   useEffect(() => {
-    // TODO: Refactor the Spotify Token. Maybe put into a separate function?
+    // TODO: (GARETH) Refactor the Spotify Token. Maybe put into a separate function?
     const url = new URL(window.location).searchParams;
     const accessToken = url.get("access_token");
     const refreshToken = url.get("refresh_token");
