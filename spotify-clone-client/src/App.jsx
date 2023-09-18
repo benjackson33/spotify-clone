@@ -8,6 +8,10 @@ import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Profile from "./components/Profile";
 import TopTracks from "./components/TopTracks";
+import Search from "./components/Search";
+import ArtistSearch from "./components/ArtistSearch";
+
+
 
 function App() {
   const [token, setToken] = useState(null);
@@ -25,6 +29,10 @@ function App() {
 
   return (
     <>
+    <div className="search-bar">
+      <Search />
+    </div>
+    
       <div>
         <h1>Hello</h1>
         {token ? (
