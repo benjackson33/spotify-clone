@@ -1,4 +1,5 @@
 .card {
+    border: solid red;
     border-radius: 10px;
     background-color: grey;
     max-width: 210px;
