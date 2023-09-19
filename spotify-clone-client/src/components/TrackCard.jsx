@@ -1,13 +1,14 @@
 import timeConversion from "../utils/timeConversion";
+import styles from "./TrackCard.module.css"
 
 const TrackCard = ({ track }) => {
-  return (
-    <li className="card">
-      <img src={track.album.images[0].url} alt="" />
-      <h3>Name: {track.name}</h3>
-      <p>Duration: {timeConversion(track.duration_ms)}</p>
-    </li>
-  );
+    return (
+        <li className="card">
+            <img src={track.album.images[0].url} alt="" />
+            <h3>Name: {track.name}</h3>
+            <p>Duration: {timeConversion(track.duration_ms)}</p>
+        </li>
+    );
 };
 
 export default TrackCard;

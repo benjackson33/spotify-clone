@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom"
 import "./App.css";
 
-import spotifySearchConfig from "./utils/spotifySearchConfig";
 import Category from "./components/Category";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
