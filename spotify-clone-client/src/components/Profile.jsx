@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import spotifySearchConfig from "../utils/spotifySearchConfig";
 
 const Profile = ({ token }) => {
   const [profile, setProfile] = useState(null);

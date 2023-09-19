@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { getTopTracks } from "../utils/spotifyConfig";
 import TrackCard from "./TrackCard";
 
 const TopTracks = ({ token }) => {
@@ -10,21 +11,10 @@ const TopTracks = ({ token }) => {
     // Available timeRange options:
     // short_term || medium_term || long_term
 
-    const getTopTracks = () => {
-        return axios.get(
-            `https://api.spotify.com/v1/me/top/tracks?time_range=${timeRange}`,
-            {
-                headers: {
-                    Authorization: `Bearer ${token}`,
-                },
-            }
-        );
-    };
-
     useEffect(() => {
         const fetchTopTracksData = async () => {
             try {
-                const { data } = await getTopTracks();
+                const { data } = await getTopTracks(timeRange);
                 setTopTracks(data);
             } catch (err) {
                 console.log(err);
