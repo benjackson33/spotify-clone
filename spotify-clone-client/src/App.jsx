@@ -25,11 +25,12 @@ function App() {
     localStorage.setItem("refresh_token", refreshToken);
     setToken(accessToken);
   }, []);
+  
 
   return (
     <>
     <div className="search-bar">
-      <Search />
+      <Search token={token}/>
     </div>
     
       <div>

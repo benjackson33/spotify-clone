@@ -7,6 +7,7 @@ const TopTracks = ({ token }) => {
     const [topTracks, setTopTracks] = useState(null);
     const [timeRange, setTimeRange] = useState("short_term");
     //         |
+    
     // https://developer.spotify.com/documentation/web-api/reference/get-users-top-artists-and-tracks
     // Available timeRange options:
     // short_term || medium_term || long_term
@@ -24,9 +25,9 @@ const TopTracks = ({ token }) => {
         fetchTopTracksData();
     }, [token]);
 
-    useEffect(() => {
-        console.log(topTracks);
-    }, [topTracks]);
+    // useEffect(() => {
+    //     console.log(topTracks);
+    // }, [topTracks]);
 
     return (
         <>
