@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { getTopTracks } from "../utils/spotifyConfig";
 import TrackCard from "./TrackCard";
+import styles from "../styles/TopTracks.module.css"
 
 const TopTracks = ({ token }) => {
     const [topTracks, setTopTracks] = useState(null);
@@ -32,7 +33,7 @@ const TopTracks = ({ token }) => {
         <>
             <h1>Spotify Top Tracks</h1>
             {topTracks && (
-                <ul>
+                <ul className={styles.cards} >
                     {topTracks &&
                         topTracks.items.map((track) => (
                             <TrackCard key={track.id} track={track} />
