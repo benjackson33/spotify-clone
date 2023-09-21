@@ -1,12 +1,30 @@
 .card {
-    border: solid red;
-    border-radius: 10px;
-    background-color: grey;
-    max-width: 210px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: #181818;
+  max-width: 225px;
+  list-style: none;
+  cursor: pointer;
+  transition: 0.25s ease-out;
 }
 
-img {
-    margin: 0 auto;
-    border-radius: 3%;
-    max-width: 200px;
+.card:hover {
+  background-color: #272727;
+  transition: 0.25s ease-in;
+}
+
+.image {
+  margin: 10px auto;
+  display: flex;
+  border-radius: 3%;
+  box-shadow: 0 0 5px #202020;
+  max-width: 90%;
+  justify-content: center;
+}
+
+.content {
+  padding: 0 1rem;
+  white-space: nowrap;
+  overflow:hidden;
+  text-overflow: ellipsis;
 }
