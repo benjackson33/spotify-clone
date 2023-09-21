@@ -22,3 +22,8 @@ export const getTopTracks = (timeRange) => {
     );
 };
 
+export const getTracks = (id) => {
+    return axios.get(
+        `/me/top/tracks?time_range=${id}`
+    );
+};

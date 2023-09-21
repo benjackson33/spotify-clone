@@ -5,11 +5,12 @@
   max-width: 225px;
   list-style: none;
   cursor: pointer;
+  transition: 0.25s ease-out;
 }
 
 .card:hover {
   background-color: #272727;
-  transition: 0.5s ease-out;
+  transition: 0.25s ease-in;
 }
 
 .image {
@@ -24,6 +25,6 @@
 .content {
   padding: 0 1rem;
   white-space: nowrap;
-  overflow: hidden;
+  overflow:hidden;
   text-overflow: ellipsis;
 }

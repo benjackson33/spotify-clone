@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { getTopTracks } from "../utils/spotifyConfig";
 import TrackCard from "./TrackCard";
 import styles from "../styles/TopTracks.module.css"
+import TrackRow from "./TrackRow";
 
 const TopTracks = ({ token }) => {
     const [topTracks, setTopTracks] = useState(null);
@@ -36,6 +37,7 @@ const TopTracks = ({ token }) => {
                 <ul className={styles.cards} >
                     {topTracks &&
                         topTracks.items.map((track) => (
+                            // <TrackRow track={track} />
                             <TrackCard key={track.id} track={track} />
                         ))}
                 </ul>
