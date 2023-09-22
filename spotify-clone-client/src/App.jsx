@@ -1,16 +1,13 @@
 import { useEffect, useState } from "react";
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, Router } from "react-router-dom";
 import "./App.css";
 
 import Category from "./components/Category";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Profile from "./components/Profile";
-import TopTracks from "./components/TopTracks";
 import Search from "./components/Search";
 import ArtistSearch from "./components/ArtistSearch";
-
-
 
 function App() {
   const [token, setToken] = useState(null);
@@ -28,19 +25,20 @@ function App() {
 
   return (
     <>
-    <div className="search-bar">
-      <Search />
-    </div>
-    
+      <div className="search-bar">
+        <Search />
+      </div>
+
       <div>
-        <h1>Hello</h1>
         {token ? (
-          <>
-            <Profile token={token} />
+          <Router>
+            <Route
+              path="/profile"
+              element={token && <Profile token={token} />}
+            />
             {/* <Category token={token} /> */}
-            <TopTracks token={token} />
             <Logout />
-          </>
+          </Router>
         ) : (
           <>
             <Login />
