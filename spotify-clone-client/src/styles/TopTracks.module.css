@@ -4,3 +4,11 @@
   flex-wrap: wrap;
   padding: 0;
 }
+
+h2 {
+  margin: 10px 0;
+}
+
+p {
+  margin: 8px 0;
+}

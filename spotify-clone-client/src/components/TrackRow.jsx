@@ -1,29 +1,31 @@
 import { useEffect, useState } from "react";
 import timeConversion from "../utils/timeConversion";
+import styles from "../styles/TrackRow.module.css"
 
-const TrackRow = ({ track }) => {
-    const [artists, setArtists] = useState(null);
-
-    useEffect(() => {
-        const extractArtist = (artistsArray) => {
-            artistsArray.forEach((artist) => {});
-        };
-        extractArtist(track.artists);
-        console.log(track.artists);
-    }, []);
-
-    return (
-        <>
-            <tr>
-                <th rowSpan={2}>{track.track_number}</th>
-                <td>{track.name}</td>
-            </tr>
-            <tr>
-                <td>{track.artists[0].name}</td>
-                <td>{timeConversion(track.duration_ms)}</td>
-            </tr>
-        </>
-    );
+const TrackRow = ({ track, trackNumber }) => {
+  return (
+    <>
+      <tr>
+        <th rowSpan={2}>{trackNumber}</th>
+        <td rowSpan={2}>
+          <img src={track.album.images[2].url} alt="" />
+        </td>
+        <td id={track.id} >{track.name}</td>
+        <td rowSpan={2}>{track.album.name}</td>
+        <td rowSpan={2}>{timeConversion(track.duration_ms)}</td>
+      </tr>
+      <tr>
+        <td>
+          {track.artists.map((artist, i) => (
+            <span key={i}>
+              {artist.name}
+              {i !== track.artists.length - 1 && ", "}
+            </span>
+          ))}
+        </td>
+      </tr>
+    </>
+  );
 };
 
 export default TrackRow;
