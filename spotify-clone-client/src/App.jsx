@@ -26,24 +26,28 @@ function App() {
     }, []);
 
     useEffect(() => {
-      console.log(token);
-    })
+        console.log(token);
+    });
 
     return (
         <>
             <div className="search-bar">
-                <Search />
+                <Search token={token} />
             </div>
 
             {/* For experimentation. Main routing in the DIV below.  */}
             <Routes>
                 <Route path="/" element={<Profile token={token} />} />
-                <Route path="/top-tracks" element={<TopTracks token={token} />} />
+                <Route
+                    path="/top-tracks"
+                    element={<TopTracks token={token} />}
+                />
                 <Route path="/top-artists" element={<TopArtists />} />
             </Routes>
 
             {/* This is the main section. Experiment with the above Routes. */}
             <div>
+                <h1>Hello</h1>
                 {token ? (
                     <Routes>
                         <Route path="/" element={<Profile token={token} />} />

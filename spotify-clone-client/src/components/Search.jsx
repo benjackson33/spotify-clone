@@ -1,14 +1,16 @@
 import { useState } from "react";
 import ArtistSearch from "./ArtistSearch";
 
-const Search = () => {
+const Search = ({ token }) => {
   const [searchInput, setSearchInput] = useState("");
+  // console.log(token);
 
   const handleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
-    console.log(searchInput);
+    // console.log(searchInput);
   };
+  
 
   return (
     <>
@@ -19,7 +21,11 @@ const Search = () => {
         value={searchInput}
       />
       <div className="artist">
-      <ArtistSearch searchInput={searchInput} />
+      <ArtistSearch 
+      searchInput={searchInput} 
+      accessToken={token}
+      
+      />
     </div>
     </>
   );
