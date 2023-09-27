@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import TopTracks from "../components/TopTracks";
+import TopTracks from "./TopTracks";
 
 const Profile = ({ token }) => {
   const [profile, setProfile] = useState(null);

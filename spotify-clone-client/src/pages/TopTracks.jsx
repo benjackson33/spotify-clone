@@ -1,9 +1,9 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getTopTracks } from "../utils/spotifyConfig";
-import TrackCard from "./TrackCard";
+import TrackCard from "../components/TrackCard";
 import styles from "../styles/TopTracks.module.css";
-import TrackRow from "./TrackRow";
+import TrackRow from "../components/TrackRow";
 
 const TopTracks = ({ token }) => {
   const [topTracks, setTopTracks] = useState(null);
