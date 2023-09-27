@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import TopTracks from "./TopTracks";
 
 const Profile = ({ token }) => {
   const [profile, setProfile] = useState(null);
@@ -22,9 +23,7 @@ const Profile = ({ token }) => {
       }
     };
 
-    // ! If you have issues with the Axios calls, for now:
-    // ! Save App.js after logging in.
-    // fetchProfileData();
+    fetchProfileData();
   }, [token]);
 
   return (
@@ -38,6 +37,7 @@ const Profile = ({ token }) => {
             <li>{profile.email}</li>
             <li>{profile.id}</li>
           </ul>
+          <TopTracks token={token} />
         </>
       )}
     </>
