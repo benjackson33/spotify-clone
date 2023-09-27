@@ -5,7 +5,7 @@ import "./App.css";
 import Category from "./components/Category";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
-import Profile from "./components/Profile";
+import Profile from "./pages/Profile";
 import Search from "./components/Search";
 import ArtistSearch from "./components/ArtistSearch";
 
