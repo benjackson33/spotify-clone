@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { getUsersTopItems } from "../utils/spotifyConfig";
 import TopTracks from "./TopTracks";
-import { getTopTracks } from "../utils/spotifyConfig";
+import TopArtists from "./TopArtists";
 
 const Profile = ({ token }) => {
   const [profile, setProfile] = useState(null);
@@ -32,7 +33,7 @@ const Profile = ({ token }) => {
 
     const fetchTopTracksData = async () => {
       try {
-        const { data } = await getTopTracks(timeRange);
+        const { data } = await getUsersTopItems(timeRange);
         setTopTracks(data);
       } catch (err) {
         console.log(err);
@@ -42,10 +43,6 @@ const Profile = ({ token }) => {
     fetchProfileData();
     fetchTopTracksData();
   }, [token]);
-
-  useEffect(() => {
-    console.log(topTracks);
-  }, [topTracks]);
 
   return (
     <>
@@ -58,6 +55,7 @@ const Profile = ({ token }) => {
             <li>{profile.email}</li>
             <li>{profile.id}</li>
           </ul>
+          <TopArtists token={token} />
           <TopTracks topTracks={topTracks} />
         </>
       )}

@@ -16,9 +16,12 @@ axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`
 localStorage.setItem("access_token", accessToken);
 localStorage.setItem("refresh_token", refreshToken);
 
-export const getTopTracks = (timeRange) => {
+// Top Items: 
+// STRING - "artists"/"tracks", 
+// STRING - "short_term", "medium_term", "long_term"
+export const getUsersTopItems = (item, timeRange) => {
     return axios.get(
-        `/me/top/tracks?time_range=${timeRange}`
+        `/me/top/${item}?time_range=${timeRange}`
     );
 };
 
