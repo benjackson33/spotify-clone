@@ -13,6 +13,10 @@ const Profile = ({ token }) => {
   // Available timeRange options:
   // short_term || medium_term || long_term
 
+  
+
+  const spotifyLogo = "https://cdn.svgporn.com/logos/spotify-icon.svg"
+
   const getProfile = () => {
     return axios.get(`https://api.spotify.com/v1/me`, {
       headers: {
@@ -33,7 +37,7 @@ const Profile = ({ token }) => {
 
     const fetchTopTracksData = async () => {
       try {
-        const { data } = await getUsersTopItems(timeRange);
+        const { data } = await getUsersTopItems('tracks', timeRange);
         setTopTracks(data);
       } catch (err) {
         console.log(err);
@@ -50,7 +54,8 @@ const Profile = ({ token }) => {
         <>
           <h1>Spotify Profile</h1>
           <ul>
-            <img src={profile.images[1].url} alt="" />
+            
+            <img src={ profile.images.length === 0 ? spotifyLogo : profile.images[1].url} alt="" />
             <li>{profile.display_name}</li>
             <li>{profile.email}</li>
             <li>{profile.id}</li>

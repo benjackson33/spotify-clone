@@ -8,7 +8,7 @@ const Search = ({ token }) => {
   const handleChange = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
-    // console.log(searchInput);
+    console.log(searchInput);
   };
   
 
@@ -24,7 +24,6 @@ const Search = ({ token }) => {
       <ArtistSearch 
       searchInput={searchInput} 
       accessToken={token}
-      
       />
     </div>
     </>

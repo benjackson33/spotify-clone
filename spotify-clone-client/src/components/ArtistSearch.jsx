@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import styles from "../styles/ArtistSearch.module.css";
 
 const ArtistSearch = ({ searchInput, accessToken }) => {
   const [artist, setArtist] = useState(null);
@@ -16,7 +17,7 @@ const ArtistSearch = ({ searchInput, accessToken }) => {
           }
         );
         setArtist(res.data.artists.items);
-        console.log(res.data.artists.items);
+        // console.log(res.data.artists.items);
       } catch (err) {
         console.error(err);
       }
@@ -31,21 +32,21 @@ const ArtistSearch = ({ searchInput, accessToken }) => {
 
   return (
     <>
-  {artist && (
-  <div>
-    {artist.map((item) => (
-      <div key={item.id}>
-        <div>{item.name}</div>
-        {item.images.length > 0 && (
-          <img src={item.images[0].url} />
-        )}
+      <div className={styles.cardWrapper}>
+        {artist && artist.map((item) => (
+          <div className={styles.card} key={item.id}>
+            {item.images.length > 0 && (
+              <div className={styles.imageWrp}>
+              <img className={styles.image} src={item.images[0].url} alt={item.name} />
+            </div>
+            )}
+            <div>{item.name}</div>
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
-)}
-
     </>
   );
+  
 };
 
 export default ArtistSearch;
