@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { getTopTracks } from "../utils/spotifyConfig";
-import TrackCard from "../components/TrackCard";
 import styles from "../styles/TopTracks.module.css";
 import TrackRow from "../components/TrackRow";
 
@@ -41,7 +40,6 @@ const TopTracks = ({ token }) => {
             {topTracks &&
               topTracks.items.map((track, i) => (
                 <TrackRow key={i} track={track} trackNumber={i + 1} />
-                // <TrackCard key={track.id} track={track} />
               ))}
           </tbody>
         </table>
