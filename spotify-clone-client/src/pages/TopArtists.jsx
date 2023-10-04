@@ -32,7 +32,7 @@ const TopArtists = ({ token }) => {
     <div>
       <h2>Top artists this month</h2>
       <p>Only visible to you</p>
-      <ul>
+      <ul className={styles.topArtists}>
         {topArtists &&
           topArtists.items.map((artist, i) => <ArtistCard artist={artist} />)}
       </ul>
