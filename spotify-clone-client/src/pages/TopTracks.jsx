@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { getTopTracks } from "../utils/spotifyConfig";
+import { getUsersTopItems } from "../utils/spotifyConfig";
 import styles from "../styles/TopTracks.module.css";
 import TrackRow from "../components/TrackRow";
 
@@ -15,7 +15,7 @@ const TopTracks = ({ token }) => {
   useEffect(() => {
     const fetchTopTracksData = async () => {
       try {
-        const { data } = await getTopTracks(timeRange);
+        const { data } = await getUsersTopItems("tracks", timeRange);
         setTopTracks(data);
       } catch (err) {
         console.log(err);
@@ -24,10 +24,6 @@ const TopTracks = ({ token }) => {
 
     fetchTopTracksData();
   }, [token]);
-
-  useEffect(() => {
-    console.log(topTracks);
-  }, [topTracks]);
 
   return (
     <>
