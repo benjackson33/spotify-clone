@@ -11,6 +11,7 @@ import ArtistSearch from "./components/ArtistSearch";
 import TopTracks from "./pages/TopTracks";
 import TopArtists from "./pages/TopArtists";
 import NavBar from "./components/NavBar";
+import Playlists from "./pages/Playlists";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -26,9 +27,9 @@ function App() {
     setToken(accessToken);
   }, []);
 
-  useEffect(() => {
-    console.log(token);
-  });
+  // useEffect(() => {
+  //   console.log(token);
+  // });
 
   return (
     <>
@@ -55,6 +56,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Profile token={token} />} />
               <Route path="/top-tracks" element={<TopTracks token={token} />} />
+              <Route path="/playlists" element={<Playlists token={token} />} />
             </Routes>
           </>
         ) : (
