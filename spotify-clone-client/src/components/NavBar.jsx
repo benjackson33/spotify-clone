@@ -14,6 +14,10 @@ const NavBar = () => {
       text: "Top Tracks",
       link: "/top-tracks",
     },
+    {
+      text: "Playlists",
+      link: "/playlists"
+    }
   ];
 
   return (

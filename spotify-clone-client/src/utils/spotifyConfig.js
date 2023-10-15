@@ -4,6 +4,9 @@ const url = new URL(window.location).searchParams;
 const accessToken = url.get("access_token");
 const refreshToken = url.get("refresh_token");
 
+export const spotifyLogo = "https://cdn.svgporn.com/logos/spotify-icon.svg"
+
+
 export const spotifySearchConfig = {
     profile: "me",
     category: "browse/categories",
@@ -30,3 +33,11 @@ export const getTracks = (id) => {
         `/me/top/tracks?time_range=${id}`
     );
 };
+
+
+export const getPlaylists = () => {
+    return axios.get(
+        `/me/playlists`
+        )
+}
+

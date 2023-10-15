@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { getUsersTopItems } from "../utils/spotifyConfig";
+import { getUsersTopItems, spotifyLogo } from "../utils/spotifyConfig";
 import TopTracks from "./TopTracks";
 import TopArtists from "./TopArtists";
 
@@ -13,9 +13,9 @@ const Profile = ({ token }) => {
   // Available timeRange options:
   // short_term || medium_term || long_term
 
-  
 
-  const spotifyLogo = "https://cdn.svgporn.com/logos/spotify-icon.svg"
+  // console.log(profile);
+
 
   const getProfile = () => {
     return axios.get(`https://api.spotify.com/v1/me`, {
