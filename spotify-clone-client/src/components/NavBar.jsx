@@ -3,8 +3,12 @@ import { NavLink } from "react-router-dom";
 const NavBar = () => {
   let navList = [
     {
-      text: "Profile",
+      text: "Home",
       link: "/",
+    },
+    {
+      text: "Profile",
+      link: "/profile",
     },
     {
       text: "Top Tracks",
@@ -13,13 +17,15 @@ const NavBar = () => {
   ];
 
   return (
-    <ul>
-      {navList.map(({ text, link }) => (
-        <li>
-          <NavLink to={link}>{text}</NavLink>
-        </li>
-      ))}
-    </ul>
+    <nav className="sidebar" >
+      <ul>
+        {navList.map(({ text, link }) => (
+          <li>
+            <NavLink to={link}>{text}</NavLink>
+          </li>
+        ))}
+      </ul>
+    </nav>
   );
 };
 

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
 
-import Category from "./components/Category";
 import Login from "./components/Login";
 import Logout from "./components/Logout";
 import Profile from "./pages/Profile";
@@ -11,10 +10,13 @@ import ArtistSearch from "./components/ArtistSearch";
 import TopTracks from "./pages/TopTracks";
 import TopArtists from "./pages/TopArtists";
 import NavBar from "./components/NavBar";
+import Home from "./pages/Home";
+import TopBar from "./components/TopBar";
 
 function App() {
   const [token, setToken] = useState(null);
 
+  // Obtain ACCESS_TOKEN & REFRESH_TOKEN from the URL and save it in localStorage for now.
   useEffect(() => {
     // TODO: (GARETH) Refactor the Spotify Token. Maybe put into a separate function?
     const url = new URL(window.location).searchParams;
@@ -31,29 +33,22 @@ function App() {
   });
 
   return (
-    <>
+    <div className="app-container">
       <NavBar />
-      <div className="search-bar">
+      {/* Commented the Search temporarily */}
+      {/* <div className="search-bar">
         <Search token={token} />
-      </div>
-
-      {/* For experimentation. Main routing in the DIV below.  */}
-      {/* <Routes>
-                <Route path="/" element={<Profile token={token} />} />
-                <Route
-                    path="/top-tracks"
-                    element={<TopTracks token={token} />}
-                />
-                <Route path="/top-artists" element={<TopArtists />} />
-            </Routes> */}
+      </div> */}
 
       {/* This is the main section. Experiment with the above Routes. */}
-      <div>
+      <div className="page-content">
         {token ? (
           <>
+            <TopBar />
             <Logout />
             <Routes>
-              <Route path="/" element={<Profile token={token} />} />
+              <Route path="/" element={<Home token={token} />} />
+              <Route path="/profile" element={<Profile token={token} />} />
               <Route path="/top-tracks" element={<TopTracks token={token} />} />
             </Routes>
           </>
@@ -63,7 +58,7 @@ function App() {
           </Routes>
         )}
       </div>
-    </>
+    </div>
   );
 }
 
