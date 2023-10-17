@@ -13,6 +13,7 @@ import NavBar from "./components/NavBar";
 import Home from "./pages/Home";
 import TopBar from "./components/TopBar";
 import Playlists from "./pages/Playlists";
+import Playlist from "./pages/Playlist";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -52,6 +53,7 @@ function App() {
               <Route path="/profile" element={<Profile token={token} />} />
               <Route path="/top-tracks" element={<TopTracks token={token} />} />
               <Route path="/playlists" element={<Playlists token={token} />} />
+              <Route path="/playlist/:id" element={<Playlist />} />
             </Routes>
           </>
         ) : (

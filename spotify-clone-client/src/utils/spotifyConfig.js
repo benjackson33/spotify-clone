@@ -40,4 +40,9 @@ export const getPlaylists = () => {
         `/me/playlists`
         )
 }
+export const getPlaylist = (playlistId) => {
+    return axios.get(
+        `/playlists/${playlistId}`
+        )
+}
 

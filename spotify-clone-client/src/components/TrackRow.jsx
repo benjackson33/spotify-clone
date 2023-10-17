@@ -8,7 +8,7 @@ const TrackRow = ({ track, trackNumber }) => {
       <tr>
         <th rowSpan={2}>{trackNumber}</th>
         <td rowSpan={2}>
-          <img src={track.album.images[2].url} alt="" />
+          <img src={track.album.images[2] ? track.album.images[2].url : track.album.images[0].url }  alt="" />
         </td>
         <td id={track.id} >{track.name}</td>
         <td rowSpan={2}>{track.album.name}</td>
