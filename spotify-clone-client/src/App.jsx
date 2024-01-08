@@ -14,6 +14,7 @@ import Home from "./pages/Home";
 import TopBar from "./components/TopBar";
 import Playlists from "./pages/Playlists";
 import Playlist from "./pages/Playlist";
+import Player from "./components/Player";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -62,6 +63,7 @@ function App() {
           </Routes>
         )}
       </div>
+      <Player token={token} />
     </div>
   );
 }

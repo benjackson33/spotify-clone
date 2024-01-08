@@ -25,7 +25,7 @@ const TopArtists = ({ token }) => {
   }, [token, timeRange]);
 
   useEffect(() => {
-    console.log(topArtists);
+    // console.log(topArtists);
   }, [topArtists]);
 
   return (
@@ -34,7 +34,9 @@ const TopArtists = ({ token }) => {
       <p>Only visible to you</p>
       <ul className={styles.topArtists}>
         {topArtists &&
-          topArtists.items.map((artist, i) => <ArtistCard key={artist.id} artist={artist} />)}
+          topArtists.items.map((artist, i) => (
+            <ArtistCard key={artist.id} artist={artist} />
+          ))}
       </ul>
     </div>
   );

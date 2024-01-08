@@ -8,7 +8,7 @@ const Playlist = () => {
   const { id } = useParams();
   const [playlist, setPlaylist] = useState(null);
 
-  console.log(playlist);
+  // console.log(playlist);
 
   useEffect(() => {
     const fetchPlaylistData = async () => {
