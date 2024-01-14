@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { getUsersTopItems } from "../utils/spotifyConfig";
 import styles from "../styles/TopArtists.module.css";
-import ArtistCard from "../components/ArtistCard";
+import ArtistsGrid from "../components/ArtistsGrid";
 
-const TopArtists = ({ token }) => {
+const TopArtists = () => {
+  const [limit, setLimit] = useState(true);
   const [topArtists, setTopArtists] = useState(null);
   const [timeRange, setTimeRange] = useState("short_term");
   //         |
@@ -20,7 +21,6 @@ const TopArtists = ({ token }) => {
         console.log(err);
       }
     };
-
     fetchTopArtistsData();
   }, [token, timeRange]);
 
@@ -29,7 +29,7 @@ const TopArtists = ({ token }) => {
   }, [topArtists]);
 
   return (
-    <div>
+    <main>
       <h2>Top artists this month</h2>
       <p>Only visible to you</p>
       <ul className={styles.topArtists}>
@@ -38,7 +38,7 @@ const TopArtists = ({ token }) => {
             <ArtistCard key={artist.id} artist={artist} />
           ))}
       </ul>
-    </div>
+    </main>
   );
 };
 

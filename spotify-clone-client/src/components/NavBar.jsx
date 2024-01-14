@@ -14,11 +14,16 @@ const NavBar = () => {
     },
     {
       id: 3,
+      text: "Top Artists",
+      link: "/top-artists",
+    },
+    {
+      id: 4,
       text: "Top Tracks",
       link: "/top-tracks",
     },
     {
-      id: 4,
+      id: 5,
       text: "Playlists",
       link: "/playlists"
     }

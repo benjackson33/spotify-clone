@@ -10,6 +10,10 @@ const ArtistCard = ({ artist }) => {
     setArtistId(evt.currentTarget.id)
   };
 
+  // useEffect(() => {
+    
+  // }, [artistId])
+
   return (
     <li id={artist.id} className={styles.card} onClick={handleClick}>
       <img className={styles.image} src={artist.images[0].url} alt="" />
