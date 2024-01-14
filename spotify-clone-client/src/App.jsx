@@ -51,6 +51,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home token={token} />} />
               <Route path="/profile" element={<Profile token={token} />} />
+              <Route path="/top-artists" element={<TopArtists token={token} />} />
               <Route path="/top-tracks" element={<TopTracks token={token} />} />
               <Route path="/playlists" element={<Playlists token={token} />} />
               <Route path="/playlist/:id" element={<Playlist />} />

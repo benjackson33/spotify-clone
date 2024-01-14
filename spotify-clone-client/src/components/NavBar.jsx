@@ -11,6 +11,10 @@ const NavBar = () => {
       link: "/profile",
     },
     {
+      text: "Top Artists",
+      link: "/top-artists",
+    },
+    {
       text: "Top Tracks",
       link: "/top-tracks",
     },
