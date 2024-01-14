@@ -19,9 +19,9 @@ const Playlists = ({ token }) => {
     fetchUserPlaylists();
   }, [token]);
 
-  useEffect(() => {
-    console.log(playlists);
-  }, [playlists]);
+  // useEffect(() => {
+  //   console.log(playlists);
+  // }, [playlists]);
 
 
 

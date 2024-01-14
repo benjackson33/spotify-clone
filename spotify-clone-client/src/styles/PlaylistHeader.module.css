@@ -1,0 +1,36 @@
+/* PlaylistHeader.module.css */
+
+.headerWrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 30px 0 30px 0;
+    color: white;
+    /* border: 1px solid red;  */
+}
+
+.headerImg {
+    height: 175px;
+    margin-right: 25px;
+    /* border: 1px solid red */
+}
+
+.playlistDetails {
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red;  */
+}
+
+.playlistDetails > h1 {
+    margin: 10px 0 10px 0;
+}
+
+.playlistDetails > p > a {
+    text-decoration: none;
+    color: white;
+}
+
+.playlistDetails > p > a:hover {
+    text-decoration: underline;
+    
+}

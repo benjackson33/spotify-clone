@@ -4,3 +4,8 @@ td {
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+.trackNumber {
+  padding: 10px;
+  margin: 5px;
+}

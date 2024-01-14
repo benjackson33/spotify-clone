@@ -22,15 +22,21 @@ const TopArtists = () => {
       }
     };
     fetchTopArtistsData();
-    console.log(topArtists);
-  }, [timeRange]);
+  }, [token, timeRange]);
+
+  useEffect(() => {
+    // console.log(topArtists);
+  }, [topArtists]);
 
   return (
     <main>
       <h2>Top artists this month</h2>
       <p>Only visible to you</p>
       <ul className={styles.topArtists}>
-        {topArtists && <ArtistsGrid artists={topArtists.items}/>}
+        {topArtists &&
+          topArtists.items.map((artist, i) => (
+            <ArtistCard key={artist.id} artist={artist} />
+          ))}
       </ul>
     </main>
   );
